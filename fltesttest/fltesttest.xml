@@ -1,0 +1,12 @@
+<ACTIONS>
+    
+    <action>
+        <name>tt_test</name>
+        <alias>test</alias>
+        <description>tt_test</description>
+        <table>empresa</table>
+        <form>tt_test</form>
+        <formrecord>tt_test</formrecord>
+        <scriptform>tt_test</scriptform>
+    </action>
+</ACTIONS>
