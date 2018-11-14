@@ -1,0 +1,17 @@
+[
+	{"tipo" : "guardaValorSQL", "var" : "codcliente", "select" : "c.codcliente", "from" : "clientes c", "where" : "c.nombre = 'GENERAL'"},
+	{"tipo" : "abreForm", "accion" : "albaranescli"},
+	{"tipo" : "insertaRegistro"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbCodCliente", "valor" : "@codcliente"},
+	{"tipo" : "insertaRegistro", "fltabledb" : "tdbLineasAlbaranesCli", "esperarEvento" : {"tipo" : "formReady", "emisor" : "formRecordlineasalbaranescli"}},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbReferencia", "valor" : "GEN10"},
+	{"tipo" : "aceptaForm", "esperarEvento" : {"tipo" : "totalizado", "emisor" : "formRecordalbaranescli"}},
+	{"tipo" : "guardaValorCursor", "var" : "codalbaran", "campo" : "codigo"},
+	{"tipo" : "aceptaForm"},
+	{"tipo" : "guardaValorSQL", "var" : "porivalinea", "select" : "l.iva", "from" : "albaranescli a INNER JOIN lineasalbaranescli l ON a.idalbaran = l.idalbaran", "where" : "a.codigo = '@codalbaran'"},
+	{"tipo" : "guardaValorSQL", "var" : "total", "select" : "a.total", "from" : "albaranescli a", "where" : "a.codigo = '@codalbaran'"},
+	{"tipo" : "comprueba", "tipoassert" : "memo", "valor" : "#porivalinea#", "memo" : "porivalinea"},
+	{"tipo" : "comprueba", "tipoassert" : "memo", "valor" : "#total#", "memo" : "total"},
+	{"tipo" : "cierraForm"}
+	
+]

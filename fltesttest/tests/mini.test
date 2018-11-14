@@ -1,0 +1,5 @@
+[
+	{"tipo" : "abreForm", "accion" : "presupuestoscli"},
+	{"tipo" : "seleccionaReg", "campo" : "codigo", "valor" : "20180A000011"},
+	{"tipo" : "clickBoton", "boton" : "toolButtonEdit"}
+]

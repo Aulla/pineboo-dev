@@ -1,0 +1,20 @@
+[
+	{"tipo" : "abreForm", "accion" : "tpv_comandas"},
+	{"tipo" : "inicioBucle", "nombre" : "creaComanda", "max" : "1"},
+	{"tipo" : "clickBoton", "boton" : "toolButtonPrint", "esperarEvento" : {"tipo" : "formReady", "emisor" : "formtpv_onventa"}},
+	{"tipo" : "clickBoton", "boton" : "tbnInsertarLinea", "esperarEvento" : {"tipo" : "pteRefrescado", "emisor" : "formtpv_onventa"}},
+	{"tipo" : "assert", "tipoassert" : "label", "label" : "lblCantPte", "valor" : "12,10"},
+	{"tipo" : "clickBoton", "boton" : "pbnPagar", "esperarEvento" : {"tipo" : "formReady", "emisor" : "formtpv_cantidadpago"}},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbImporteEfectivo", "valor" : "20"},
+	{"tipo" : "aceptaForm"},
+	{"tipo" : "assert", "tipoassert" : "label", "label" : "lblCantEntregada", "valor" : "20,00"},
+	{"tipo" : "clickBoton", "boton" : "pushButtonAccept", "esperarEvento" : {"tipo" : "acceptedForm", "emisor" : "formtpv_onventa"}},
+	{"tipo" : "guardaValorSQL", "var" : "idComanda", "select" : "idtpv_comanda", "from" : "tpv_comandas", "where" : "1 = 1 ORDER BY idtpv_comanda DESC"},
+	{"tipo" : "guardaValorSQL", "var" : "totalLineas", "select" : "SUM(pvptotal)", "from" : "tpv_lineascomanda", "where" : "idtpv_comanda = @idComanda"},
+	{"tipo" : "guardaValorSQL", "var" : "total", "select" : "total", "from" : "tpv_comandas", "where" : "idtpv_comanda = @idComanda"},
+	{"tipo" : "guardaValorSQL", "var" : "neto", "select" : "neto", "from" : "tpv_comandas", "where" : "idtpv_comanda = @idComanda"},
+	{"tipo" : "guardaValorSQL", "var" : "totalPagos", "select" : "SUM(importe)", "from" : "tpv_pagoscomanda", "where" : "idtpv_comanda = @idComanda"},
+	{"tipo" : "assert", "tipoassert" : "memo", "memo" : "totalLineas", "valor" : "@neto"},
+	{"tipo" : "assert", "tipoassert" : "memo", "memo" : "totalPagos", "valor" : "@total"},
+	{"tipo" : "finBucle", "nombre" : "creaComanda"}
+]

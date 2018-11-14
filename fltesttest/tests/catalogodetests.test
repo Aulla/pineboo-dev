@@ -1,0 +1,17 @@
+[
+	{"tipo" : "abreForm", "accion" : "clientes"},
+	{"tipo" : "clickBoton", "boton" : "toolButtomInsert"},
+	{"tipo" : "guardaValorCursor", "var" : "codcliente", "campo" : "codcliente"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbNombre", "valor" : "Pepe"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbCifNif", "valor" : "74510345M"},
+	{"tipo" : "aceptaForm"},
+	{"tipo" : "seleccionaReg", "campo" : "codcliente", "valor" : "000007"},
+	{"tipo" : "clickBoton", "boton" : "toolButtonEdit"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbNombre", "valor" : "Juan"},
+	{"tipo" : "assert", "tipoassert" : "FLField", "FLField" : "fdbCodCliente", "valor" : "000007"},
+	{"tipo" : "assert", "tipoassert" : "label", "label" : "lblCantPte", "valor" : "10,00"}
+	{"tipo" : "aceptaForm"},
+	{"tipo" : "cierraForm"},
+	{"tipo" : "inicioBucle", "nombre" : "creaComanda", "max" : "1"},
+	{"tipo" : "finBucle", "nombre" : "creaComanda"}
+]

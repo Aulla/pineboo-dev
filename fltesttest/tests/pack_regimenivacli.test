@@ -1,0 +1,10 @@
+[{
+	"tipo" : "pack",
+	"tests" : "factregimeniva",
+	"paramtest" : [
+		{"cliente" : "EXENTO", "porivalinea" : "@none", "total": "10"},
+		{"cliente" : "GENERAL", "porivalinea" : "21", "total": "12.1"},
+		{"cliente" : "EXPORTACION", "porivalinea" : "21", "total": "10"},
+		{"cliente" : "UE", "porivalinea" : "21", "total": "10"}
+	]
+}]

@@ -1,0 +1,17 @@
+[
+	{"tipo" : "abreForm", "accion" : "presupuestoscli"},
+	{"tipo" : "insertaRegistro"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbCodCliente", "valor" : "000007"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbDireccion", "valor" : "x"},
+	{"tipo" : "insertaRegistro", "fltabledb" : "tdbLineasPresupuestosCli"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbReferencia", "valor" : "r1"},
+	{"tipo" : "aceptaForm"},
+	{"tipo" : "guardaValorCursor", "var" : "totalpres", "campo" : "total"},
+	{"tipo" : "guardaValorCursor", "var" : "codpresupuesto", "campo" : "codigo"},
+	{"tipo" : "aceptaForm"},
+	{"tipo" : "seleccionaReg", "campo" : "codigo", "valor" : "@codpresupuesto"},
+	{"tipo" : "clickBoton", "boton" : "pbnGenerarPedido"},
+	{"tipo" : "guardaValorSQL", "var" : "codpedido", "select" : "p.codigo", "from" : "presupuestoscli pr INNER JOIN pedidoscli p ON pr.idpresupuesto = p.idpresupuesto", "where" : "pr.codigo = '@codpresupuesto'"},
+	{"tipo" : "cierraForm"}
+	
+]

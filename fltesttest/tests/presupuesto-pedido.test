@@ -1,0 +1,19 @@
+[
+	{"tipo" : "abreForm", "accion" : "presupuestoscli"},
+	{"tipo" : "insertaRegistro"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbCodCliente", "valor" : "000001"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbDireccion", "valor" : "x"},
+	{"tipo" : "insertaRegistro", "fltabledb" : "tdbLineasPresupuestosCli", "esperarEvento" : {"tipo" : "formReady", "emisor" : "formRecordlineaspresupuestoscli"}},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbReferencia", "valor" : "R1"},
+	{"tipo" : "aceptaForm", "esperarEvento" : {"tipo" : "totalizado", "emisor" : "formRecordpresupuestoscli"}},
+	{"tipo" : "guardaValorCursor", "var" : "totalpres", "campo" : "total"},
+	{"tipo" : "guardaValorCursor", "var" : "codpresupuesto", "campo" : "codigo"},
+	{"tipo" : "aceptaForm"},
+	{"tipo" : "seleccionaReg", "campo" : "codigo", "valor" : "@codpresupuesto"},
+	{"tipo" : "clickBoton", "boton" : "pbnGenerarPedido", "esperarEvento" : {"tipo" : "pedidoGenerado", "emisor" : "formpresupuestoscli"}},
+	{"tipo" : "guardaValorSQL", "var" : "totalped", "select" : "p.total", "from" : "presupuestoscli pr INNER JOIN pedidoscli p ON pr.idpresupuesto = p.idpresupuesto", "where" : "pr.codigo = '@codpresupuesto'"},
+	{"tipo" : "guardaValorSQL", "var" : "codpedido", "select" : "p.codigo", "from" : "presupuestoscli pr INNER JOIN pedidoscli p ON pr.idpresupuesto = p.idpresupuesto", "where" : "pr.codigo = '@codpresupuesto'"},
+	{"tipo" : "comprueba", "tipoassert" : "memo", "valor" : "@totalped", "memo" : "totalpres"},
+	{"tipo" : "cierraForm"}
+	
+]

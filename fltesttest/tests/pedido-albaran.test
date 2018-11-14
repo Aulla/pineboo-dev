@@ -1,0 +1,18 @@
+[
+	{"tipo" : "abreForm", "accion" : "pedidoscli"},
+	{"tipo" : "insertaRegistro"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbCodCliente", "valor" : "000001"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbDireccion", "valor" : "x"},
+	{"tipo" : "insertaRegistro", "fltabledb" : "tdbLineasPedidosCli", "esperarEvento" : {"tipo" : "formReady", "emisor" : "formRecordlineaspedidoscli"}},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbReferencia", "valor" : "R1"},
+	{"tipo" : "aceptaForm", "esperarEvento" : {"tipo" : "totalizado", "emisor" : "formRecordpedidoscli"}},
+	{"tipo" : "guardaValorCursor", "var" : "totalped", "campo" : "total"},
+	{"tipo" : "guardaValorCursor", "var" : "codpedido", "campo" : "codigo"},
+	{"tipo" : "aceptaForm"},
+	{"tipo" : "seleccionaReg", "campo" : "codigo", "valor" : "@codpedido"},
+	{"tipo" : "clickBoton", "boton" : "pbnGenerarAlbaran", "esperarEvento" : {"tipo" : "albaranGenerado", "emisor" : "formpedidoscli"}},
+	{"tipo" : "guardaValorSQL", "var" : "totalalb", "select" : "a.total", "from" : "pedidoscli p INNER JOIN lineasalbaranescli l ON p.idpedido = l.idpedido INNER JOIN albaranescli a ON l.idalbaran = a.idalbaran", "where" : "p.codigo = '@codpedido'"},
+	{"tipo" : "comprueba", "tipoassert" : "memo", "valor" : "@totalalb", "memo" : "totalped"},
+	{"tipo" : "cierraForm"}
+	
+]

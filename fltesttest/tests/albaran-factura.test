@@ -1,0 +1,19 @@
+[
+	{"tipo" : "abreForm", "accion" : "albaranescli"},
+	{"tipo" : "insertaRegistro"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbCodCliente", "valor" : "000001"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbDireccion", "valor" : "x"},
+	{"tipo" : "insertaRegistro", "fltabledb" : "tdbLineasAlbaranesCli", "esperarEvento" : {"tipo" : "formReady", "emisor" : "formRecordlineasalbaranescli"}},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbReferencia", "valor" : "R1"},
+	{"tipo" : "aceptaForm", "esperarEvento" : {"tipo" : "totalizado", "emisor" : "formRecordalbaranescli"}},
+	{"tipo" : "guardaValorCursor", "var" : "totalalb", "campo" : "total"},
+	{"tipo" : "guardaValorCursor", "var" : "codalbaran", "campo" : "codigo"},
+	{"tipo" : "aceptaForm"},
+	{"tipo" : "seleccionaReg", "campo" : "codigo", "valor" : "@codalbaran"},
+	{"tipo" : "clickBoton", "boton" : "pbnGenerarFactura", "esperarEvento" : {"tipo" : "formReady", "emisor" : "formdatosadicionales"}},
+	{"tipo" : "aceptaForm", "esperarEvento" : {"tipo" : "facturaGenerada", "emisor" : "formalbaranescli"}},
+	{"tipo" : "guardaValorSQL", "var" : "totalfac", "select" : "f.total", "from" : "albaranescli a INNER JOIN facturascli f ON a.idfactura = f.idfactura", "where" : "a.codigo = '@codalbaran'"},
+	{"tipo" : "comprueba", "tipoassert" : "memo", "valor" : "@totalfac", "memo" : "totalalb"},
+	{"tipo" : "cierraForm"}
+	
+]

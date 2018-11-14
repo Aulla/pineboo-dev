@@ -1,0 +1,6 @@
+[
+	{"tipo" : "abreForm", "accion" : "presupuestoscli"},
+	{"tipo" : "insertaRegistro"},
+	{"tipo" : "ponValorFLField", "FLField" : "fdbCodCliente", "valor" : "000001"}
+	
+]
