@@ -73,6 +73,12 @@ class oficial(interna):
     def insertaRegistro(self, oPaso=None):
         return self.ctx.oficial_insertaRegistro(oPaso)
     
+    def editaRegistro(self, oPaso=None):
+        return self.ctx.oficial_editaRegistro(oPaso)
+    
+    def borraRegistro(self, oPaso=None):
+        return self.ctx.oficial_borraRegistro(oPaso)
+    
     def cierraForm(self, oPaso=None):
         return self.ctx.oficial_cierraForm(oPaso)
     
@@ -147,6 +153,7 @@ class FormInternalObj(FormDBWidget):
         _i = self.iface
         ignorado = False
         debug(ustr( u"Recibido evento " , tipo , u" desde " , emisor , u" " , _i.testing ))
+        debug(_i.oEventoEsperado)
         if not _i.testing:
             debug(u"No testing")
             return True
@@ -155,8 +162,11 @@ class FormInternalObj(FormDBWidget):
             debug(u"anadeFormPila")
             _i.anadeFormPila(emisor)
         elif tipo == u"formClosed":
-            debug(u"quitaFormPila")
-            _i.quitaFormPila()
+            if _i.aPilaForms:
+                debug(u"quitaFormPila")
+                _i.quitaFormPila()
+            else:
+                ignorado = True
         elif _i.oEventoEsperado:
             debug(u"Evento esperado")
             if _i.oEventoEsperado[u"tipo"] != tipo or _i.oEventoEsperado[u"emisor"] != emisor:
@@ -181,8 +191,9 @@ class FormInternalObj(FormDBWidget):
     
     def oficial_quitaFormPila(self):
         _i = self.iface
-        _i.aPilaForms.pop()
-        _i.ponFormActual()
+        if _i.aPilaForms:
+            _i.aPilaForms.pop()
+            _i.ponFormActual()
     
     def oficial_ponFormActual(self):
         _i = self.iface
@@ -383,6 +394,40 @@ class FormInternalObj(FormDBWidget):
             return False
 
         t.insertRecord()
+    
+    def oficial_editaRegistro(self, oPaso=None):
+        _i = self.iface
+        _i.log(sys.translate(u"Paso %s. Edita registro") % (str(_i.iPaso)))
+        tN = None
+        if u"fltabledb" in oPaso:
+            tN = oPaso[u"fltabledb"]
+        else:
+            tN = u"tableDBRecords"
+        
+        t = _i.dameWidget(tN)
+        if not t:
+            _i.log(sys.translate(u"No encuentra tabla %s") % (str(tN)), u"ERROR")
+            _i.finTest()
+            return False
+
+        t.editRecord()
+    
+    def oficial_borraRegistro(self, oPaso=None):
+        _i = self.iface
+        _i.log(sys.translate(u"Paso %s. Borra registro") % (str(_i.iPaso)))
+        tN = None
+        if u"fltabledb" in oPaso:
+            tN = oPaso[u"fltabledb"]
+        else:
+            tN = u"tableDBRecords"
+        
+        t = _i.dameWidget(tN)
+        if not t:
+            _i.log(sys.translate(u"No encuentra tabla %s") % (str(tN)), u"ERROR")
+            _i.finTest()
+            return False
+
+        t.deleteRecord()
     
     def oficial_clickBoton(self, oPaso=None):
         _i = self.iface
