@@ -2,6 +2,7 @@
 
 #export PYTHONPATH=/usr/bin/python3
 BASE_DIR=$(pwd)
-export PYQTDESIGNERPATH=$BASE_DIR/flfielddb:$BASE_DIR/fltabledb:$BASE_DIR/fltable:$BASE_DIR/pncore
+export PYQTDESIGNERPATH=/home/aulla/repos/github/pineboo-dev/plugins_designer/python
+export PYTHONPATH=/home/aulla/repos/github/pineboo-dev/plugins_designer/widgets
 export QT_DEBUG_PLUGINS=1
 designer
