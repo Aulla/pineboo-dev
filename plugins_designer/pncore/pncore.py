@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-from PyQt5 import QtCore, QtWidgets
-
-
-import os
+from PyQt6 import QtCore, QtWidgets
 
 
 class PNCore(QtWidgets.QWidget):

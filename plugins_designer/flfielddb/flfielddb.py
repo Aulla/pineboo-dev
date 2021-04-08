@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from PyQt5.Qt import QIcon, QPixmap, QTextFormat, QTextEdit
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QLineEdit, QPushButton
-from PyQt5.QtCore import pyqtProperty, Q_ENUMS
-from PyQt5 import QtCore
-
-from enum import Enum
+from PyQt6 import QtGui, QtWidgets, QtCore
+import enum
 import os
 
 
-class AutoCompletionEnum(Enum):
+class AutoCompletionEnum(enum.Enum):
     NeverAuto, OnDemandF4, AlwaysAuto = range(3)
 
 
-class FLFieldDB(QWidget):
+class FLFieldDB(QtWidgets.QWidget):
 
     _label = None
     _editor = None
@@ -38,16 +34,17 @@ class FLFieldDB(QWidget):
     def __init__(self, parent=None):
 
         super().__init__(parent)
-        lay = QHBoxLayout()
-        self._label = QLabel(self)
-        self._editor = QLineEdit(self)
+        lay = QtWidgets.QHBoxLayout()
+        self._label = QtWidgets.QLabel(self)
+        self._editor = QtWidgets.QLineEdit(self)
         self._editor.setMaximumHeight(22)
-        self._push_button = QPushButton(self)
+        self._push_button = QtWidgets.QPushButton(self)
         self._push_button.setIcon(
-            QIcon(
-                QPixmap(
+            QtGui.QIcon(
+                QtGui.QPixmap(
                     os.path.realpath(
-                        os.path.join(os.path.dirname(__file__), "./icons/flfielddb.png")
+                        os.path.join(os.path.dirname(__file__),
+                                     "./icons/flfielddb.png")
                     )
                 )
             )
@@ -73,7 +70,7 @@ class FLFieldDB(QWidget):
 
         self.update()
 
-    Q_ENUMS(AutoCompletionEnum)
+    QtCore.Q_ENUMS(AutoCompletionEnum)
 
     def setFieldName(self, f):
         self._field_name = f
@@ -196,15 +193,20 @@ class FLFieldDB(QWidget):
         self._label.setSizePolicy(self.sizePolicy())
         self._editor.setSizePolicy(self.sizePolicy())
 
-    fieldName = pyqtProperty(str, get_field_name, setFieldName)
-    tableName = pyqtProperty(str, get_table_name, setTableName)
-    foreignField = pyqtProperty(str, get_foreign_field, setForeignField)
-    fieldRelation = pyqtProperty(str, get_field_relation, setFieldRelation)
-    fieldAlias = pyqtProperty(str, get_field_alias, setFieldAlias)
-    showAlias = pyqtProperty(bool, get_show_alias, setShowAlias)
-    showEditor = pyqtProperty(bool, get_show_editor, setShowEditor)
-    textFormat = pyqtProperty(QtCore.Qt.TextFormat, get_text, setText)
-    echoMode = pyqtProperty(QLineEdit.EchoMode, get_echo_mode, setEchoMode)
-    layoutSpacing = pyqtProperty(int, get_layout_spacing, setLayoutSpacing)
-    layoutMarging = pyqtProperty(int, get_layout_marging, setLayoutMarging)
-    autoCompletionMode = pyqtProperty(AutoCompletionEnum, get_auto_completion, setAutoCompletion)
+    fieldName = QtCore.pyqtProperty(str, get_field_name, setFieldName)
+    tableName = QtCore.pyqtProperty(str, get_table_name, setTableName)
+    foreignField = QtCore.pyqtProperty(str, get_foreign_field, setForeignField)
+    fieldRelation = QtCore.pyqtProperty(
+        str, get_field_relation, setFieldRelation)
+    fieldAlias = QtCore.pyqtProperty(str, get_field_alias, setFieldAlias)
+    showAlias = QtCore.pyqtProperty(bool, get_show_alias, setShowAlias)
+    showEditor = QtCore.pyqtProperty(bool, get_show_editor, setShowEditor)
+    textFormat = QtCore.pyqtProperty(QtCore.Qt.TextFormat, get_text, setText)
+    echoMode = QtCore.pyqtProperty(
+        QtWidgets.QLineEdit.EchoMode, get_echo_mode, setEchoMode)
+    layoutSpacing = QtCore.pyqtProperty(
+        int, get_layout_spacing, setLayoutSpacing)
+    layoutMarging = QtCore.pyqtProperty(
+        int, get_layout_marging, setLayoutMarging)
+    autoCompletionMode = QtCore.pyqtProperty(
+        AutoCompletionEnum, get_auto_completion, setAutoCompletion)

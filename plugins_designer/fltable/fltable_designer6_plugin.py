@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 
 # Based on https://github.com/pyqt/examples/blob/master/designer/plugins/python/analogclockplugin.py
-
-from PyQt5.Qt import QIcon, QPixmap
-from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
-
-from pncore import PNCore
-
 import os
+import fltable
+
+from PyQt6 import QtDesigner, QtGui
 
 
-class PNCoreDBPluging(QPyDesignerCustomWidgetPlugin):
+class FLTableluging(QtDesigner.QPyDesignerCustomWidgetPlugin):
+
     def __init__(self, parent=None):
         super().__init__(parent)
 
@@ -27,29 +25,25 @@ class PNCoreDBPluging(QPyDesignerCustomWidgetPlugin):
         return self.initialized
 
     def createWidget(self, parent):
-        return PNCore(parent)
+        return fltable.FLTable(parent)
 
     def name(self):
-        return "PNCore"
+        return "FLTable"
 
     def group(self):
         return "Pineboo"
 
     def icon(self):
-        return QIcon(
-            QPixmap(
-                os.path.realpath(os.path.join(os.path.dirname(__file__), "./icons/dataline.png"))
-            )
-        )
+        return QtGui.QIcon(QtGui.QPixmap(os.path.realpath(os.path.join(os.path.dirname(__file__), "./icons/designer_table.png"))))
 
     def toolTip(self):
-        return "PNCore Widget"
+        return "FLTable Widget"
 
     def whatsThis(self):
-        return "A widget for data base fields"
+        return "A widget for data"
 
     def isContainer(self):
         return False
 
     def includeFile(self):
-        return "pncore"
+        return "fltable"

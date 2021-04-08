@@ -1,26 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from PyQt6 import QtGui, QtWidgets, QtCore
+
 import os
 
-from PyQt5.Qt import QIcon, QPixmap, QTextFormat, QTextEdit
-from PyQt5.QtWidgets import (
-    QWidget,
-    QHBoxLayout,
-    QLabel,
-    QLineEdit,
-    QPushButton,
-    QVBoxLayout,
-    QComboBox,
-    QFrame,
-    QPlainTextEdit,
-    QSpacerItem,
-    QSizePolicy,
-)
-from PyQt5.QtCore import pyqtProperty, pyqtSlot, pyqtSignal
-from PyQt5 import QtCore
 
-
-class FLTableDB(QWidget):
+class FLTableDB(QtWidgets.QWidget):
 
     te_search = None
     le_search = None
@@ -48,65 +33,69 @@ class FLTableDB(QWidget):
     _insert_only = False
     _auto_sort_column = True
 
-    readOnlyChanged = pyqtSignal()
-    insertOnlyChanged = pyqtSignal()
+    readOnlyChanged = QtCore.pyqtSignal()
+    insertOnlyChanged = QtCore.pyqtSignal()
 
     def __init__(self, parent):
 
         super().__init__(parent)
 
-        self.layout_master = QVBoxLayout()
-        self.upper_layout = QHBoxLayout()
+        self.layout_master = QtWidgets.QVBoxLayout()
+        self.upper_layout = QtWidgets.QHBoxLayout()
 
-        self.botton_layout = QHBoxLayout()
-        self.buttons_layout = QVBoxLayout()
+        self.botton_layout = QtWidgets.QHBoxLayout()
+        self.buttons_layout = QtWidgets.QVBoxLayout()
 
         # Layout superior
 
-        self.upper_frame = QFrame(self)
+        self.upper_frame = QtWidgets.QFrame(self)
 
         self.upper_layout.setSpacing(0)
 
-        self.te_search = QLabel(self)
+        self.te_search = QtWidgets.QLabel(self)
         self.te_search.setText("Buscar")
-        self.le_search = QLineEdit(self)
-        self.te_in = QLabel(self)
+        self.le_search = QtWidgets.QLineEdit(self)
+        self.te_in = QtWidgets.QLabel(self)
         self.te_in.setText("en")
 
-        self.cb_1 = QComboBox(self)
-        self.cb_2 = QComboBox(self)
+        self.cb_1 = QtWidgets.QComboBox(self)
+        self.cb_2 = QtWidgets.QComboBox(self)
 
         # Layout inferior
-        self.plain_text = QPlainTextEdit(self)
+        self.plain_text = QtWidgets.QPlainTextEdit(self)
 
-        self.bt_table = QPushButton(self)
-        self.bt_filter = QPushButton(self)
-        self.bt_export = QPushButton(self)
-        self.bt_spacer = QSpacerItem(0, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.bt_table = QtWidgets.QPushButton(self)
+        self.bt_filter = QtWidgets.QPushButton(self)
+        self.bt_export = QtWidgets.QPushButton(self)
+        self.bt_spacer = QtWidgets.QSpacerItem(
+            0, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
 
         self.bt_table.setIcon(
-            QIcon(
-                QPixmap(
+            QtGui.QIcon(
+                QtGui.QPixmap(
                     os.path.realpath(
-                        os.path.join(os.path.dirname(__file__), "./icons/fltable-data.png")
+                        os.path.join(os.path.dirname(__file__),
+                                     "./icons/fltable-data.png")
                     )
                 )
             )
         )
         self.bt_filter.setIcon(
-            QIcon(
-                QPixmap(
+            QtGui.QIcon(
+                QtGui.QPixmap(
                     os.path.realpath(
-                        os.path.join(os.path.dirname(__file__), "./icons/fltable-filter.png")
+                        os.path.join(os.path.dirname(__file__),
+                                     "./icons/fltable-filter.png")
                     )
                 )
             )
         )
         self.bt_export.setIcon(
-            QIcon(
-                QPixmap(
+            QtGui.QIcon(
+                QtGui.QPixmap(
                     os.path.realpath(
-                        os.path.join(os.path.dirname(__file__), "./icons/fltable-odf.png")
+                        os.path.join(os.path.dirname(__file__),
+                                     "./icons/fltable-odf.png")
                     )
                 )
             )
@@ -254,23 +243,23 @@ class FLTableDB(QWidget):
     def get_auto_sort_column(self):
         return self._auto_sort_column
 
-    @pyqtSlot()
+    @QtCore.pyqtSlot()
     def insertRecord(self):
         pass
 
-    @pyqtSlot()
+    @QtCore.pyqtSlot()
     def editRecord(self):
         pass
 
-    @pyqtSlot()
+    @QtCore.pyqtSlot()
     def browseRecord(self):
         pass
 
-    @pyqtSlot()
+    @QtCore.pyqtSlot()
     def deleteRecord(self):
         pass
 
-    @pyqtSlot()
+    @QtCore.pyqtSlot()
     def copyRecord(self):
         pass
 
@@ -281,9 +270,11 @@ class FLTableDB(QWidget):
         if len(self._table_name) > 0:
             self.plain_text.appendPlainText("tableName: %s" % self._table_name)
         if len(self._foreign_field) > 0:
-            self.plain_text.appendPlainText("foreignField: %s" % self._foreign_field)
+            self.plain_text.appendPlainText(
+                "foreignField: %s" % self._foreign_field)
         if len(self._field_relation) > 0:
-            self.plain_text.appendPlainText("fieldRelation: %s" % self._field_relation)
+            self.plain_text.appendPlainText(
+                "fieldRelation: %s" % self._field_relation)
 
         if self._find_hidden:
             self.upper_frame.hide()
@@ -302,19 +293,27 @@ class FLTableDB(QWidget):
         self.layout().setSpacing(self._layout_spacing)
         self.layout().setContentsMargins(self._layout_marging, 0, self._layout_marging, 0)
 
-    tableName = pyqtProperty(str, get_table_name, setTableName)
-    foreignField = pyqtProperty(str, get_foreign_field, setForeignField)
-    fieldRelation = pyqtProperty(str, get_field_relation, setFieldRelation)
-    checkColumnEnabled = pyqtProperty(bool, get_cc_enabled, setCcEnabled)
-    aliasCheckColumn = pyqtProperty(str, get_cc_alias, setCcAlias)
-    findHidden = pyqtProperty(bool, get_find_hidden, setFindHidden)
-    filterHidden = pyqtProperty(bool, get_filter_hidden, setFilterHidden)
-    showAllPixmaps = pyqtProperty(bool, get_show_all_pixmaps, setShowAllPixmaps)
-    functionGetColor = pyqtProperty(str, get_funtion_get_color, setFunctionGetColor)
-    onlyTable = pyqtProperty(bool, get_only_table, setOnlyTable)
-    readOnly = pyqtProperty(bool, get_read_only, setReadOnly)
-    editOnly = pyqtProperty(bool, get_edit_only, setEditOnly)
-    insertOnly = pyqtProperty(bool, get_insert_only, setInsertOnly)
-    autoSortColumn = pyqtProperty(bool, get_auto_sort_column, setAutoSortColumn)
-    layoutSpacing = pyqtProperty(int, get_layout_spacing, setLayoutSpacing)
-    layoutMarging = pyqtProperty(int, get_layout_marging, setLayoutMarging)
+    tableName = QtCore.pyqtProperty(str, get_table_name, setTableName)
+    foreignField = QtCore.pyqtProperty(str, get_foreign_field, setForeignField)
+    fieldRelation = QtCore.pyqtProperty(
+        str, get_field_relation, setFieldRelation)
+    checkColumnEnabled = QtCore.pyqtProperty(
+        bool, get_cc_enabled, setCcEnabled)
+    aliasCheckColumn = QtCore.pyqtProperty(str, get_cc_alias, setCcAlias)
+    findHidden = QtCore.pyqtProperty(bool, get_find_hidden, setFindHidden)
+    filterHidden = QtCore.pyqtProperty(
+        bool, get_filter_hidden, setFilterHidden)
+    showAllPixmaps = QtCore.pyqtProperty(
+        bool, get_show_all_pixmaps, setShowAllPixmaps)
+    functionGetColor = QtCore.pyqtProperty(
+        str, get_funtion_get_color, setFunctionGetColor)
+    onlyTable = QtCore.pyqtProperty(bool, get_only_table, setOnlyTable)
+    readOnly = QtCore.pyqtProperty(bool, get_read_only, setReadOnly)
+    editOnly = QtCore.pyqtProperty(bool, get_edit_only, setEditOnly)
+    insertOnly = QtCore.pyqtProperty(bool, get_insert_only, setInsertOnly)
+    autoSortColumn = QtCore.pyqtProperty(
+        bool, get_auto_sort_column, setAutoSortColumn)
+    layoutSpacing = QtCore.pyqtProperty(
+        int, get_layout_spacing, setLayoutSpacing)
+    layoutMarging = QtCore.pyqtProperty(
+        int, get_layout_marging, setLayoutMarging)
