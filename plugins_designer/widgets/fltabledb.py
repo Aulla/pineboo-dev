@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from PyQt6 import QtGui, QtWidgets, QtCore
-
 import os
 
 
@@ -75,7 +74,7 @@ class FLTableDB(QtWidgets.QWidget):
                 QtGui.QPixmap(
                     os.path.realpath(
                         os.path.join(os.path.dirname(__file__),
-                                     "./icons/fltable-data.png")
+                                     "../icons/fltable-data.png")
                     )
                 )
             )
@@ -85,7 +84,7 @@ class FLTableDB(QtWidgets.QWidget):
                 QtGui.QPixmap(
                     os.path.realpath(
                         os.path.join(os.path.dirname(__file__),
-                                     "./icons/fltable-filter.png")
+                                     "../icons/fltable-filter.png")
                     )
                 )
             )
@@ -95,7 +94,7 @@ class FLTableDB(QtWidgets.QWidget):
                 QtGui.QPixmap(
                     os.path.realpath(
                         os.path.join(os.path.dirname(__file__),
-                                     "./icons/fltable-odf.png")
+                                     "../icons/fltable-odf.png")
                     )
                 )
             )

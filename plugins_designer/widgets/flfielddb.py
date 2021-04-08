@@ -6,7 +6,9 @@ import os
 
 
 class AutoCompletionEnum(enum.Enum):
-    NeverAuto, OnDemandF4, AlwaysAuto = range(3)
+    NeverAuto = 0
+    OnDemandF4 = 1
+    AlwaysAuto = 2
 
 
 class FLFieldDB(QtWidgets.QWidget):
@@ -44,7 +46,7 @@ class FLFieldDB(QtWidgets.QWidget):
                 QtGui.QPixmap(
                     os.path.realpath(
                         os.path.join(os.path.dirname(__file__),
-                                     "./icons/flfielddb.png")
+                                     "../icons/flfielddb.png")
                     )
                 )
             )

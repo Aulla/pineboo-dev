@@ -1,8 +1,8 @@
 Instalación:
 
-#Instalar Qt6 y PyQt6 desde fuentes. Esto instala libpyqt6.so que es el plugin que carga nuestros plugings en python3.
- sudo -H pip3 install PyQt6-6.0.3.tar.gz
- 
+#Instalar Qt6 y PyQt6 desde fuentes: 
+sip-install //Esto instala libpyqt6.so que es el plugin que carga nuestros plugings en python3. 
+
 lanzar launch_designer.sh
  
 

@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
 
 from PyQt6 import QtGui, QtWidgets, QtCore
-
 import enum
 import os
 
 
 class SelectionModeEnum(enum.Enum):
-    Single, Multi, SingleRow, MultiRow, NoSelection = range(5)
+    Single = 0
+    Multi = 1
+    SingleRow = 2
+    MultiRow = 3
+    NoSelection = 4
 
 
 class FocusStyleEnum(enum.Enum):
-    FollowStyle, SpreadSheet = range(2)
+    FollowStyle = 0
+    SpreadSheet = 1
 
 
 class FLTable(QtWidgets.QWidget):
