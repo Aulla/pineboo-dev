@@ -34,7 +34,7 @@ class FLTableluging(QtDesigner.QPyDesignerCustomWidgetPlugin):
         return "Pineboo"
 
     def icon(self):
-        return QtGui.QIcon(QtGui.QPixmap(os.path.realpath(os.path.join(os.path.dirname(__file__), "./icons/designer_table.png"))))
+        return QtGui.QIcon(QtGui.QPixmap(os.path.realpath(os.path.join(os.path.dirname(__file__), "../icons/designer_table.png"))))
 
     def toolTip(self):
         return "FLTable Widget"

@@ -38,7 +38,7 @@ class PNCoreDBPluging(QtDesigner.QPyDesignerCustomWidgetPlugin):
         return QtGui.QIcon(
             QtGui.QPixmap(
                 os.path.realpath(os.path.join(
-                    os.path.dirname(__file__), "./icons/dataline.png"))
+                    os.path.dirname(__file__), "../icons/dataline.png"))
             )
         )
 

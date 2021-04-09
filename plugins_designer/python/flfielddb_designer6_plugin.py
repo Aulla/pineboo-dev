@@ -36,7 +36,7 @@ class FLFieldDBPluging(QtDesigner.QPyDesignerCustomWidgetPlugin):
         return "Pineboo"
 
     def icon(self):
-        return QtGui.QIcon(QtGui.QPixmap(os.path.realpath(os.path.join(os.path.dirname(__file__), "./icons/dataline.png"))))
+        return QtGui.QIcon(QtGui.QPixmap(os.path.realpath(os.path.join(os.path.dirname(__file__), "../icons/dataline.png"))))
 
     def toolTip(self):
         return "FLFieldDB Widget"

@@ -35,7 +35,7 @@ class FLTableDBPluging(QtDesigner.QPyDesignerCustomWidgetPlugin):
         return "Pineboo"
 
     def icon(self):
-        return QtGui.QIcon(QtGui.QPixmap(os.path.realpath(os.path.join(os.path.dirname(__file__), "./icons/datatabledb.png"))))
+        return QtGui.QIcon(QtGui.QPixmap(os.path.realpath(os.path.join(os.path.dirname(__file__), "../icons/datatabledb.png"))))
 
     def toolTip(self):
         return "FLTableDB Widget"
