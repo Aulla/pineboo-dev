@@ -5,19 +5,6 @@ import enum
 import os
 
 
-class SelectionModeEnum(enum.Enum):
-    Single = 0
-    Multi = 1
-    SingleRow = 2
-    MultiRow = 3
-    NoSelection = 4
-
-
-class FocusStyleEnum(enum.Enum):
-    FollowStyle = 0
-    SpreadSheet = 1
-
-
 class FLTable(QtWidgets.QWidget):
 
     table_view = None
@@ -32,6 +19,14 @@ class FLTable(QtWidgets.QWidget):
     _focus_style = None
     _default_row_height = None
     _default_col_width = None
+
+    @QtCore.pyqtEnum
+    class SelectionModeEnum(enum.Enum):
+        Single, Multi, SingleRow, MultiRow, NoSelection = range(5)
+
+    @QtCore.pyqtEnum
+    class FocusStyleEnum(enum.Enum):
+        FollowStyle, SpreadSheet = range(2)
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -56,8 +51,8 @@ class FLTable(QtWidgets.QWidget):
         self._default_col_width = 100
         self._default_row_height = 20
 
-    QtCore.Q_ENUMS(SelectionModeEnum)
-    QtCore.Q_ENUMS(FocusStyleEnum)
+    # QtCore.Q_ENUMS(SelectionModeEnum)
+    # QtCore.Q_ENUMS(FocusStyleEnum)
 
     def setNumRows(self, nr):
         self._num_rows = nr

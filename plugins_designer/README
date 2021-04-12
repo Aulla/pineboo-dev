@@ -1,6 +1,6 @@
 Instalación:
 
-#Instalar Qt6 y PyQt6 desde fuentes: 
+#Instalar Qt6 , PyQt6-sip >= 6.0.3 y PyQt6 desde fuentes: 
 sip-install //Esto instala libpyqt6.so que es el plugin que carga nuestros plugings en python3. 
 
 lanzar launch_designer.sh

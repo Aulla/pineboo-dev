@@ -5,12 +5,6 @@ import enum
 import os
 
 
-class AutoCompletionEnum(enum.Enum):
-    NeverAuto = 0
-    OnDemandF4 = 1
-    AlwaysAuto = 2
-
-
 class FLFieldDB(QtWidgets.QWidget):
 
     _label = None
@@ -66,13 +60,15 @@ class FLFieldDB(QtWidgets.QWidget):
         self.fieldName = ""
         self._show_alias = True
         self._show_editor = True
-        self._text_format = 2  # AutoText
-        self._echo_mode = 0  # normal
+        self._text_format = QtCore.Qt.TextFormat.AutoText  # (2) AutoText
+        self._echo_mode = QtWidgets.QLineEdit.EchoMode.Normal  # normal
         self._auto_completion = 1  # OnDemandF4
 
         self.update()
 
-    QtCore.Q_ENUMS(AutoCompletionEnum)
+    @QtCore.pyqtEnum
+    class AutoCompletionEnum(enum.Enum):
+        NeverAuto, OnDemandF4, AlwaysAuto = range(3)
 
     def setFieldName(self, f):
         self._field_name = f
